@@ -99,7 +99,7 @@ detailsbtn.addEventListener("click", function(){
   summarybtn.classList.remove("active");
   projectsbtn.classList.remove("active");
   
-  // screen display control
+  // screen display control 
   detailsSection.classList.add("active");
   projectsSection.classList.remove("active");
   summarySection.classList.remove("active");
