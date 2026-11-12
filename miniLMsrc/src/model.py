@@ -1,9 +1,14 @@
 import torch
 import torch.nn as nn
 
+from pathlib import Path
+base_dir = Path(__file__).resolve().parent
+
 from miniLMsrc.build import tool
 from miniLMsrc.build import dep
 
+
+wei_path = base_dir / "miniLM.pt"
 
 class miniLM(nn.Module):
   """ a tiny language model from scratch """
@@ -23,7 +28,7 @@ class miniLM(nn.Module):
   block_size = 512
   lr         = 1e-3
 
-  def __init__(self, file="/home/ordn/projects/ordnWeb/miniLMsrc/miniLM.pt"):
+  def __init__(self, file=wei_path):
 
     super().__init__()
     

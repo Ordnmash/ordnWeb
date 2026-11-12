@@ -4,6 +4,9 @@ from fastapi.templating import Jinja2Templates
 
 from pydantic import BaseModel
 
+from pathlib import Path
+base_dir = Path(__file__).resolve().parent
+
 from miniLMsrc.model import miniLM
 miniLM = miniLM()
 
@@ -38,7 +41,7 @@ def chat(prompt: str, source:str):
   print(data)
   return data
 
-detfile = "/home/ordn/projects/ordnWeb/app/proj/ordn.json"
+detfile = base_dir / "ordn.json"
 
 # details
 @app.get("/user/details")
@@ -49,9 +52,8 @@ def returnDetails():
   
   return Details.getData()
 
-import os
 
-projfile = "/home/ordn/projects/ordnWeb/app/proj/projects.json"
+projfile = base_dir / "projects.json"
 
 from proj.projectsRen import Projects
 Projects = Projects(projfile)
