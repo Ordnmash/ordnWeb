@@ -1,4 +1,6 @@
-const URL = "http://127.0.0.1:8080";
+const URL = window.location.hostname === "localhost"
+    ? "http://127.0.0.1:8080"
+    : window.location.origin;
 
 export async function getDetails(){
   try{
