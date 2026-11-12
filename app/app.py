@@ -41,7 +41,7 @@ def chat(prompt: str, source:str):
   print(data)
   return data
 
-detfile = base_dir / "ordn.json"
+detfile = base_dir / "proj/ordn.json"
 
 # details
 @app.get("/user/details")
@@ -53,7 +53,7 @@ def returnDetails():
   return Details.getData()
 
 
-projfile = base_dir / "projects.json"
+projfile = base_dir / "proj/projects.json"
 
 from proj.projectsRen import Projects
 Projects = Projects(projfile)

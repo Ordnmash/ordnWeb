@@ -1,6 +1,9 @@
 import ast
+from pathlib import Path
 
-file = "/home/ordn/projects/ordnWeb/miniLMsrc/build/chat_learnedData.txt"
+base_dir = Path(__file__).resolve().parent
+
+file = base_dir / "tokenIDs.txt"
 
 def encdec() -> list[dict]:
   tokenSet = open(file, "r").read().splitlines()

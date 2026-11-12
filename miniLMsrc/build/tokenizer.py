@@ -1,8 +1,12 @@
+from pathlib import Path
+
 from tool import encode
 
-print("running the tokenizer...")
 
-file = "miniLM/converted_chat_formatted.txt"
+base_dir = Path(__file__).resolve().parent
+
+file = base_dir /"file name"
+
 data = open(file, "r").read()
 #print(tokenSet)
 vocabs = list(sorted(set(data)))

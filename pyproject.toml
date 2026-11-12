@@ -31,3 +31,6 @@ build-backend = "uv_build"
 members = [
     "miniLM",
 ]
+
+[tool.uv]
+package = false
