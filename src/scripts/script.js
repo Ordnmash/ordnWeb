@@ -56,33 +56,11 @@ commentbtn.addEventListener("click", function(){
   }, 1);
 });
 
-function animateColors(){
-  let nowon = 1;
-  setInterval(() => {
-    if (nowon <= 1){
-      red.classList.add('active');
-      yellow.classList.remove('active');
-      green.classList.remove('active');
-      nowon = 2;
-    } else if (nowon <= 2){
-      red.classList.remove('active');
-      yellow.classList.add('active');
-      green.classList.remove('active');
-      nowon = 3;
-    } else {
-      red.classList.remove('active');
-      yellow.classList.remove('active');
-      green.classList.add('active');
-      nowon = 1;
-    }
-  }, 200);
-}
-animateColors();
 
 closeCommentbtn.addEventListener("click", function(){
   outint.classList.add("active");
   inint.classList.remove("active");
-  clearInterval(mycode); // stop the interval also reduce memory
+  clearInterval(mycode);
 });
 
 summarybtn.addEventListener("click", function(){
@@ -132,18 +110,68 @@ detailsbtn.addEventListener("click", function(){
   righttv.classList.remove("active");
 });
 
-const ca = document.getElementById("current-age");
-const birthDate = new Date("2007-06-13T00:00:00Z");
+import { getDetails } from "./api/cmmnctn.js";
+
+
+function elementIdentity(identity){
+  
+  let htmlDetails = "";
+  const keys = Object.keys(identity);
+  for (let det=0; det<keys.length; det++){
+    htmlDetails += `<h3>${keys[det]}:</h3><p>${identity[keys[det]]}</p>`;
+  }
+  
+  htmlDetails += `<h3>current age:</h3><p id="current-age"></p>`;
+  return htmlDetails;
+}
+
+async function displayDetails(){
+
+  const details_section = document.getElementById("details_section");
+  const details = await getDetails();
+
+  // pass them to actual html file
+  details_section.innerHTML   = elementIdentity(details.user);
+  
+  // display top view names
+  const tv_names              = document.getElementById("tv-names");
+  tv_names.innerText          = details.detailedUser.firstname + ' ' + details.detailedUser.lastname;
+  
+  // display bio
+  const bio_section           = document.getElementById("bio_section");
+  bio_section.innerText       = details.account.bio;
+
+  // display head
+  const head_section          = document.getElementById("head_section");
+  head_section.textContent    = details.account.top_status; 
+
+  // display details at details
+  const details_              = document.getElementById("details_");
+  details_.textContent        = details.account.details;
+  
+  ageUpdate();
+}
+
+displayDetails();
+
 
 // running age update function 
 function ageUpdate(){
+
+  const current_age = document.getElementById("current-age");
+  const birthDate   = new Date("2007-06-13T00:02:00Z");
+
   const now = new Date();
-  const ageMilliseconds = now - birthDate;
-  const ageMillisecondsYear = 1000 * 60 * 60 * 24 * 365.2425;
+  const ageMilliseconds     = now - birthDate;
+  const ageMillisecondsYear = 1000 * 60 * 60 * 24 * 365.2421904020;
   const ageInYears = ageMilliseconds / ageMillisecondsYear;
   
-  ca.textContent = ageInYears.toFixed(12);
+  current_age.textContent = `${ageInYears.toFixed(12)}`;
   requestAnimationFrame(ageUpdate);
 };
 
-ageUpdate();
+const goChatBtn = document.getElementById("goChat");
+
+goChatBtn.addEventListener("click", () =>{
+  window.location.href = "/chat";
+});

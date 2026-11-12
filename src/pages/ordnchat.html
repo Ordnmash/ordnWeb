@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ordn - chat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="static/styles/chat.css">
+    <link rel="icon" href="static/images/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="static/images/favicon/favicon-512.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="static/images/favicon/favicon-512.png">
+  </head>
+  <body>
+    <div class="topcontent">
+      <div class="topleft"><div class="clearChats" id="clearChat">
+        <span class="clearChatBtn" id="clearChatBtn">clear</span>
+      </div></div><h3>miniLM</h3><div class="right_top"><span id="tohome">home</span><span>arch</span></div>
+    </div>
+
+    <main id="log" aria-live="polite">
+      <div id="empty">
+        <p class="empty_title">Chat with miniLM</p>
+        <p class="empty_sub">An 8M-parameter transformer built from scratch. It's tiny, so expect odd answers.</p>
+        <div class="suggestions">
+          <button type="button" class="chip" id="chip1">Can we talk for a minute?</button>
+          <button type="button" class="chip" id="chip2">Hello, how are you?</button>
+          <button type="button" class="chip" id="chip3">Hello, have you seen any good movies lately?</button>
+        </div>
+      </div>
+    </main>
+ 
+    <main id="chatspace" hidden aria-live="polite">
+      <div class='msg' id='msg'></div>
+      <!-- JavaScript renders messages here -->
+    </main>
+
+    <form id="composer" autocomplete="off">
+      <div class="inputrow">
+        <textarea id="prompt_input" rows="1" placeholder="Write a prompt" aria-label="Prompt"></textarea>
+        <div id="send" aria-label="Send">
+          <span class="material-symbols-outlined">arrow_upward</span>
+        </div>
+      </div>
+    </form>
+    <script type="module" src="static/scripts/chatfrontend.js"></script>
+    <script type="module" src="static/scripts/api/route.js"></script>
+  </body>
+</html>

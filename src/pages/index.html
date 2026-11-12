@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Material+Symbols+Outlined" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/styles/indexstyle.css">
+  <link rel="icon" href="static/images/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="static/images/favicon/favicon-512.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="static/images/favicon/favicon-512.png">
+
+  <meta name="theme-color" content="#f4f8fa">
+  <meta name="description" content="Ordn's developer portfolio — projects, experiments and work in machine learning and software development.">
+
+  <title>ordnWeb</title>
+</head>
+
+<body>
+  <div class="topview">
+    <h3 class="names" id="tv-names"></h3>
+
+    <div class="right-tv" id="right-tv">
+      <p class="summary-btn active" id="summary-btn">summary</p>
+      <p class="projects-btn" id="projects-btn">projects</p>
+      <p class="details-btn" id="details-btn">details</p>
+    </div>
+
+    <div class="righttv-menu">
+      <span class="material-symbols-outlined active" id="topmenu">menu</span>
+    </div>
+  </div>
+
+  <div class="topmenu-blank" id="topmenu-blank"></div>
+
+  <div class="pd-section active" id="summary-section">
+    <div class="smm-head">
+      <div class="models">
+        <button id="goChat" type="button" aria-label="Open chat">
+          <span class="material-symbols-outlined">smart_toy</span>
+          <span class="ai-label">try my AI</span>
+        </button>
+      </div>
+
+      <div class="headline">
+        <h3 class="prince" id="head_section"></h3>
+      </div>
+    </div>
+
+    <div class="profile">
+      <div class="pphoto">
+        <img src="static/images/ordn_anime_ai_img.png" alt="Illustrated portrait of Ordn">
+      </div>
+
+      <div class="pd-cover">
+        <div class="pdetails" id="details_section">
+          <h3>current age:</h3>
+          <p id="current-age"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bio">
+      <p id="bio_section"></p>
+    </div>
+
+    <div class="interactions">
+      <div class="outint active" id="outint">
+        <span class="material-symbols-outlined" id="comment_">comment</span>
+      </div>
+
+      <div class="inint" id="inint">
+        <input type="text" id="comment_to" placeholder="Quick message..." aria-label="Quick message">
+        <span class="material-symbols-outlined active" id="closeComment-btn">close</span>
+        <span class="material-symbols-outlined" id="sendComment-btn">
+          <a href="mailto:ordnmash@gmail.com" aria-label="Send email">send</a>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="projects" id="projects-section">
+    <div class="summary-projects">
+      <h4>Most projects tagged here are associated with deep learning.</h4>
+    </div>
+  </div>
+
+  <div class="details" id="details-section">
+    <div class="alldetails">
+      <h5>summary details</h5>
+
+      <div class="personal">
+        <p class="dir" id="details_"></p>
+
+        <div class="contact">
+          <p>GitHub: <a href="https://github.com/Ordnmash" target="_blank" rel="noopener noreferrer">Ordn Git</a></p>
+          <p>Email: <a href="mailto:ordnmash@gmail.com">ordnmash@gmail.com</a></p>
+          <p>Phone: <a href="tel:+27791859943">+27 79 185 9943</a></p>
+          <p>WhatsApp: <a href="https://wa.me/27791859943" target="_blank" rel="noopener noreferrer">Message Ordn</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="static/scripts/script.js"></script>
+  <script type="module" src="static/scripts/api/cmmnctn.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "user":
+  {
+    "first name":"ordain",
+    "second name":"enough",
+    "last name":"mthembeni",
+    "date-of-birth":"2007-06-13"
+  },
+  "detailedUser":
+  {
+    "firstname":"ordain",
+    "secondname":"enough",
+    "lastname":"mthembeni"
+  },
+  "account":
+  {
+    "bio":"I love training neural nets, large language models 'LLMs', tiny interactive models like games AI. view my neural network library(written from scratch)",
+    "top_status":"__pythonDev__",
+    "details":"I love working with neural networks and training them, yet there's still a lot more to explore in this field! I'm working on deep building blocks of Neural Networks (Brain of AI). This is what consumes my entire day, I'm so happy with it!"
+  }
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "head":"pyne framework (built from scratch)",
+    "details":"pyne is a tiny autograd framework in the level of tensor. It implements high dimensional mathematical expression for neural networks, with nn.module with it.",
+    "img":"/path/image/img.png"
+  },
+  {
+    "head":"miniLM (chat language model)",
+    "details":"miniLM is a language modeling - built to mimic human daily conversation, the model was directly trained on human conversational chat, the was no separate stages of training. for about 98k exchange of conversation dataset.",
+    "img":"/path/image/img.png"
+  },
+  {
+    "head":"car game ai (game simulation AI)",
+    "details":"Car Game-AI is a simple neural net that was built to play car game simulation avoiding colliding with other cars for survival. The big note is that this model isn't Reinforcement Learning is purely supervised learning with the same architecture for language modeling, but in different environment which is playing car game. The dataset is collected from human players (me), for about 20 games dataset and the model really learned to play the game just like I did. But what if the model was memorizing the games instead of learning real patterns? Overfitting? well each game is completely generated randomly 'which removes the overfitting concept entirely'",
+    "img":"/path/image/img.png"
+  },
+  {
+    "head":"imSarcasist v1",
+    "details":"ImSarcasist is a sequencial language modeling - built to model humor sarcasms. The idea is, could it really generate a real sense of humor without even knowing about grammar? The dataset is collected from the Reddit Sarcasm csv datafile to train the model to generate the sarcasms learned from data. The length of the dataset is roughly 231k of sarcasms strings. The model architectures are LSTMs and MLP. The model size is 500k parameters and 5 layers",
+    "img":"/path/image/img.png"
+  }
+]

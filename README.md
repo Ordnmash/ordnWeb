@@ -1,4 +1,4 @@
-## Ordn Mash (Ordain Mthembeni) Portfolio web
-- in this web you'll find my personal info.
-
-#### There I've tagged my projects which are uploaded on GitHub again!
+### ordn mash (ordain mthembeni)
+---
+##### this is ordnWeb - my webpage where my projects are tagged.
+#### also a simpler gateway to interate with some of my projects.
