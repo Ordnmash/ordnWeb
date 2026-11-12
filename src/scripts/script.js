@@ -37,7 +37,7 @@ topmenublank.addEventListener("click", function(){
   righttv.classList.remove("active");
 });
 
-let mycode = null; // avoid undefined errors
+let mycode = null;
 
 commentbtn.addEventListener("click", function(){
   outint.classList.remove("active");
@@ -155,7 +155,7 @@ async function displayDetails(){
 displayDetails();
 
 
-// running age update function 
+// running age update function
 function ageUpdate(){
 
   const current_age = document.getElementById("current-age");
