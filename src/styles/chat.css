@@ -210,9 +210,34 @@ textarea {
   margin: 4px 8px 4px 8px;
 }
 
-/* Error messages */
-#error {
-  color: var(--error);
+.bot.processingModelRes {
+  color: var(--muted);
+  position: relative;
+  display: inline-block;
+
+  background: linear-gradient(
+  90deg,
+  var(--muted) 35%,
+  rgba(255, 255, 255, 0.95) 50%,
+  var(--muted) 65%
+);
+
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: thinking 0.75s linear infinite;
+}
+
+@keyframes thinking {
+  from {
+    background-position: 100% center;
+  }
+
+  to {
+    background-position: -100% center;
+  }
 }
 
 #user {

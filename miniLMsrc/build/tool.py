@@ -77,8 +77,6 @@ def forward(self, x, targets=None):
 
         
 def generate(self, prompt:str, src:str):
-    src = json.loads(src) if src else src
-    print(src)
     
     self.eval()
     text  = ''

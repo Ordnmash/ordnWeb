@@ -15,8 +15,6 @@ env/
 # Jupyter notebooks
 *.ipynb
 
-# Text files
-*.txt
 
 # IDE and OS files
 .vscode/

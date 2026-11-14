@@ -1,5 +1,4 @@
-import { getResponse } from "./api/route.js";
-import { routeTo } from "./api/route.js";
+import { getResponse, routeTo, deletehist} from "./api/route.js";
 
 const log = document.getElementById("log");
 const chatspace = document.getElementById("chatspace");
@@ -55,9 +54,15 @@ function constructChatSpace(){
 }
 
 function clearChats(){
-  chats = null;
-  localStorage.clear();
-  checkChats();
+
+  const uid = localStorage.getItem("uid");
+  deletehist(uid).then(()=>{
+    chats = null;
+    localStorage.clear();
+    localStorage.setItem("uid",uid);
+    checkChats();
+  }
+  ).catch(err => console.log(err));
 }
 
 clearBtn.addEventListener("click", clearChats);
@@ -66,7 +71,6 @@ function renderChats(){
 
   const hist    = JSON.parse(chats);
   const noSpace = (document.getElementById("msg") == null);
-  console.log(`\nnoSpace:${noSpace}\n`);
 
   if (noSpace){
     constructChatSpace();
@@ -99,44 +103,47 @@ function showUserPrompt(){
   if (prompt){
     if (content !== "null"){
       msgEl.innerHTML += (`<p id="user" class="user">${prompt}</p>`);
+      msgEl.innerHTML += (`<p id="bot" class="bot processingModelRes">processing...</p>`);
     }
     else{
       msgEl.innerHTML = (`<p id="user" class="user">${prompt}</p>`);
+      msgEl.innerHTML += (`<p id="bot" class="bot processingModelRes">processing...</p>`);
     }
-      chats = msgEl.innerHTML;
+    chats = msgEl.innerHTML;
     setCurrentChats();
     getResponse(prompt);
   }
 }
 
 export function showBotResponse(response){
-  
-  const msgEl   = document.getElementById("msg");
-  const content = `${msgEl.innerHTML}`;
+  const msgEl   = document.getElementById("msg"); 
+  const botEl   = document.querySelector(".processingModelRes");
 
-  if (response){
-  if (content !== "null"){
-      msgEl.innerHTML += (`<p id="bot" class="bot">${response}</p>`);
-    }
-    else{
-      msgEl.innerHTML = (`<p id="bot" class="bot">${prompt}</p>`);
-    }
+  if (botEl){
+
+    if (response){
+
+      botEl.textContent = response;
+      botEl.classList.remove("processingModelRes");
       chats = msgEl.innerHTML;
-    setCurrentChats();
-    
-    const prompt = localStorage.getItem("miniLM/pending");
-    const hist   = JSON.parse(localStorage.getItem("miniLM/chats"));
-    const ndata  = {user: prompt, bot:response};
-    
-    if (hist){
-      hist.push(ndata);
-      localStorage.setItem("miniLM/chats", JSON.stringify(hist));
+      setCurrentChats();
+
+      const prompt = localStorage.getItem("miniLM/pending");
+      const hist   = JSON.parse(localStorage.getItem("miniLM/chats"));
+      const ndata  = {user: prompt, bot:response};
+
+      if (hist){
+        hist.push(ndata);
+        localStorage.setItem("miniLM/chats", JSON.stringify(hist));
+      }
+      else{
+        localStorage.setItem("miniLM/chats", JSON.stringify([ndata]));  
+      }
+
+      localStorage.removeItem("miniLM/pending");
     }
-    else{
-      localStorage.setItem("miniLM/chats", JSON.stringify([ndata]));  
-    }
-    
-    localStorage.removeItem("miniLM/pending");
+  } else{
+    console.log(`botEl is ${botEl}`);
   }
 }
 
@@ -178,4 +185,3 @@ chip2.addEventListener("click", ()=>{
   const prompt = chip3.textContent;
   prompt_input.value = prompt;
 });
-

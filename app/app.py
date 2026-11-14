@@ -5,21 +5,37 @@ from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 
 from pathlib import Path
+
+from proj.projectsRen import Projects
+from miniLMsrc.model import miniLM
+
+import ast
+
+
 base_dir = Path(__file__).resolve().parent
 
-from miniLMsrc.model import miniLM
-miniLM = miniLM()
+userfile:str = base_dir / "users.txt"
+users:list   = ast.literal_eval(open(userfile, "r").read())
 
+miniLM = miniLM()
 
 app = FastAPI()
 
 templates = Jinja2Templates(directory="src")
 
-app.mount("/static", StaticFiles(directory="src/"), "static")
 
+app.mount("/static", StaticFiles(directory="src/"), "static")
 
 # endPoint configurations...
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^
+@app.get("/adduser")
+def addUser():
+  newID = len(users)
+  users.append({"id":newID,"chatsrc":""})
+  with open(userfile, 'w') as f:
+    f.write(f"{users}")
+  return {"uid":newID}
+
 @app.get("/")
 def homePage(request: Request):
   return templates.TemplateResponse(request, "pages/index.html")
@@ -30,16 +46,30 @@ def chatspace(request: Request):
 
 
 @app.get("/lmchat")
-def chat(prompt: str, source:str):
-  
-  res, tm, src = miniLM.gn(prompt=prompt, src=source)
+def chat(prompt: str, uid:int):
+
+  source:str   = users[uid]["chatsrc"]
+  res, tm, src = miniLM.gn(prompt, source)
+
+  users[uid]["chatsrc"] = src
+  with open(userfile, "w") as f:
+    f.write(f"{users}")
+
   data = {
     "response": res,
-    "time":tm,
-    "source":src,
+    "time":tm
   }
-  print(data)
+
   return data
+
+@app.delete("/lmchat")
+def deleteChat(uid:int):
+  users[uid]["chatsrc"] = ""
+  with open(userfile, "w") as f:
+    f.write(f"{users}")
+
+  return {"res":"OK"}
+
 
 detfile = base_dir / "proj/ordn.json"
 
@@ -53,28 +83,45 @@ def returnDetails():
   return Details.getData()
 
 
-projfile = base_dir / "proj/projects.json"
-
-from proj.projectsRen import Projects
+projfile = base_dir / "proj/projects.txt"
 Projects = Projects(projfile)
+
+class PrjPost(BaseModel):
+  title:str   = ""
+  content:str = ""
+  img:str     = ""
+  link:str    = ""
+  nameLink:str= ""
 
 
 @app.get("/user/projects")
 def returnProjects():
-
   return Projects.getData()
 
-class PrjPost(BaseModel):
-  head:str    = ""
-  details:str = ""
-  img:str     = ""
-
 @app.post("/user/projects")
-def editPrj(data: PrjPost):
+def addProject(data: PrjPost):
   newdata:dict = {
-    "head"   :data.head,
-    "details":data.details,
-    "img"    :data.img
+    "title"   :data.title,
+    "content" :data.content,
+    "img"     :data.img,
+    "link"    :data.link,
+    "nameLink":data.nameLink
     }
 
   Projects.addData(newdata)
+  return {"res":"OK"}
+
+@app.delete("/user/projects")
+def delProject(idx: int):
+  Projects.removeData(idx)
+  return {"res":"OK"}
+
+@app.patch("/user/projects")
+def editProject(idx:int, key:str, content:str):
+  Projects.editData(idx, key, content)
+  return {"res":"OK"}
+
+
+@app.get("/admin")
+def adminPage(request: Request):
+  return templates.TemplateResponse(request, "pages/ddfoethert.html")

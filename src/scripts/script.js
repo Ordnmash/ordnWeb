@@ -17,9 +17,6 @@ const topmenublank    = document.getElementById("topmenu-blank");
 const tvnames         = document.getElementById("tv-names");
 const righttv         = document.getElementById("right-tv");
 
-const red             = document.getElementById("red");
-const yellow          = document.getElementById("yellow");
-const green           = document.getElementById("green");
 
 topmenubtn.addEventListener("click", function(){
   topmenushow.classList.add("active");
@@ -110,8 +107,6 @@ detailsbtn.addEventListener("click", function(){
   righttv.classList.remove("active");
 });
 
-import { getDetails } from "./api/cmmnctn.js";
-
 
 function elementIdentity(identity){
   
@@ -125,10 +120,9 @@ function elementIdentity(identity){
   return htmlDetails;
 }
 
-async function displayDetails(){
+export async function displayDetails(details){
 
   const details_section = document.getElementById("details_section");
-  const details = await getDetails();
 
   // pass them to actual html file
   details_section.innerHTML   = elementIdentity(details.user);
@@ -152,10 +146,7 @@ async function displayDetails(){
   ageUpdate();
 }
 
-displayDetails();
 
-
-// running age update function
 function ageUpdate(){
 
   const current_age = document.getElementById("current-age");
@@ -175,3 +166,31 @@ const goChatBtn = document.getElementById("goChat");
 goChatBtn.addEventListener("click", () =>{
   window.location.href = "/chat";
 });
+
+const projSec = document.getElementById("projects-section");
+
+export async function displayProjects(projects){
+
+  for (let p=0;p<projects.length;p++){
+    const project = projects[p];
+    const projHTML = `
+      <div class="fstproject">
+        <h3>${project.title}</h3>
+        <div class="details_project">
+          <p class="expl">${project.content}</p>
+          <div class="pynedet">
+            <img src="${project.img}" alt="project_image">
+          </div>
+          <div class="links">
+            <a href="${project.link}">${project.nameLink}</a>
+          </div>
+        </div>
+      </div>
+    `;
+    if (projSec.innerHTML != "null"){
+      projSec.innerHTML += projHTML;
+    } else{
+      projSec.innerHTML = projHTML;
+    }
+  }
+}

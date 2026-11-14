@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ordn</title>
+    <link rel="stylesheet" href="static/styles/dhdfhskhd.css">
+</head>
+<body>
+
+    <main class="admin-container">
+
+        <!-- Header -->
+        <header class="admin-header">
+            <div>
+                <span class="admin-label">ADMINISTRATION</span>
+                <h1>Project Manager</h1>
+                <p>Manage your portfolio projects.</p>
+            </div>
+
+            <a href="/" class="back-link">← View Portfolio</a>
+        </header>
+
+        <!-- Add / Edit project -->
+        <section class="project-editor">
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-label">PROJECT EDITOR</span>
+                    <h2 id="formTitle">Add New Project</h2>
+                </div>
+            </div>
+
+            <form id="projectForm">
+
+                <div class="form-group">
+                    <label for="title">Project Title</label>
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        placeholder="e.g. MiniLM"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="content">Project Description</label>
+                    <textarea
+                        id="content"
+                        name="content"
+                        placeholder="Describe your project..."
+                        rows="5"
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="img">Image URL</label>
+                    <input
+                        type="url"
+                        id="img"
+                        name="img"
+                        placeholder="https://example.com/image.png"
+                    >
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="link">Project Link</label>
+                        <input
+                            type="url"
+                            id="link"
+                            name="link"
+                            placeholder="https://github.com/..."
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nameLink">Link Display Name</label>
+                        <input
+                            type="text"
+                            id="nameLink"
+                            name="nameLink"
+                            placeholder="View on GitHub"
+                        >
+                    </div>
+
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="cancelEdit" class="cancel-btn" hidden>
+                        Cancel
+                    </button>
+
+                    <button type="submit" id="submitProject" class="submit-btn">
+                        Add Project +
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+        <!-- Existing projects -->
+        <section class="project-manager">
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-label">YOUR PORTFOLIO</span>
+                    <h2>Existing Projects</h2>
+                </div>
+
+                <span class="project-count" id="projectCount">0 Projects</span>
+            </div>
+
+            <div class="admin-project-list" id="projectList">
+
+                <div class="empty-projects">
+                    <p>No projects loaded yet.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+    <script type="module" src="static/scripts/dhddhdal.js"></script>
+    <script type="module" src="static/scripts/api/dfehognodhfd.js"></script>
+
+</body>
+</html>
