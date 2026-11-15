@@ -48,7 +48,10 @@ body {
 }
 .topcontent h3 { margin: 0; font-size: 1.05rem; font-weight: 600; }
 .right_top { display: flex; gap: 1.25rem; color: var(--muted); }
-.right_top span{ color: inherit; text-decoration: none; cursor: pointer; }
+.right_top span{ color: inherit; text-decoration: none; cursor: pointer;
+  pointer-events: none;
+  -webkit-user-select: none; user-select: none;}
+  
 .right_top span:hover { color: var(--ink); cursor: pointer; }
  
 /* message log */
@@ -270,8 +273,15 @@ textarea {
   color: var(--muted);
   font-weight: 600;
   cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 #clearChatBtn span{
   cursor: pointer;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
-
