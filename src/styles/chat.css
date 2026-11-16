@@ -53,6 +53,13 @@ body {
   -webkit-user-select: none; user-select: none;}
   
 .right_top span:hover { color: var(--ink); cursor: pointer; }
+
+.right_top button{
+  border: none;
+  background-color: none;
+  cursor: pointer;
+  width: auto;
+}
  
 /* message log */
 #log {
