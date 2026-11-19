@@ -1,6 +1,6 @@
 const projectList = document.getElementById("projectList");
 
-function displayProjects(projects){
+export function displayProjects(projects){
   projectList.innerHTML = "";
   let i = 0;
   projects.forEach((project) => {
@@ -11,7 +11,7 @@ function displayProjects(projects){
       <p id="projectContent${i}">${project.content}</p>
       <img src="${project.img}" alt="${project.title}">
       <p id="projectLink${i}">${project.link}</p>
-      <p id="projectLinkname${i}">${project.linkname}</p>
+      <p id="projectLinkname${i}">${project.nameLink}</p>
       <button id="deleteProject${i}" class="delete-project">Delete</button>
     `;
     projectList.appendChild(projectItem);

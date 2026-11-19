@@ -4,6 +4,8 @@ const URL = window.location.hostname === "localhost"
 
 const projectForm = document.getElementById("projectForm");
 
+import { displayProjects } from "../dhddhdal.js";
+
 projectForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -28,3 +30,18 @@ projectForm.addEventListener("submit", async (e) => {
         alert("An error occurred while adding the project.");
     }
 });
+
+async function getProjects(){
+  try{
+    const urlRes = await fetch(`${URL}/user/projects`);
+    if (urlRes.ok){
+      const data = await urlRes.json();
+      displayProjects(data);
+    }
+  }
+  catch(err){
+    console.log(err);
+  }
+}
+
+getProjects();
