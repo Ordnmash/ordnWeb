@@ -15,6 +15,11 @@ export function displayProjects(projects){
       <button id="deleteProject${i}" class="delete-project">Delete</button>
     `;
     projectList.appendChild(projectItem);
+    document.getElementById(`deleteProject${i}`).addEventListener("click", ()=>{
+      const confBtn = document.createElement("button");
+      confBtn.classList.add("confBtn");
+      
+    });
     i++;
   });
 }
