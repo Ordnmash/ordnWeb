@@ -143,7 +143,7 @@ export function showBotResponse(response){
       localStorage.removeItem("miniLM/pending");
     }
   } else{
-    console.log(`botEl is ${botEl}`);
+    console.error(`botEl is ${botEl}`);
   }
 }
 
@@ -164,7 +164,6 @@ sendBtn.addEventListener("click", ()=>{
 });
 
 tohomeBtn.addEventListener("click", () =>{
-  console.log("running tohomeBtn fucntion");
   routeTo("/");
 });
 
