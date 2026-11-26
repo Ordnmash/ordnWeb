@@ -44,4 +44,4 @@ async function getProjects(){
   }
 }
 
-getProjects();
+getProjects(); // by default we pull existing projects from db.

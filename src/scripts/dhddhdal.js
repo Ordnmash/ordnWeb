@@ -18,7 +18,6 @@ export function displayProjects(projects){
     document.getElementById(`deleteProject${i}`).addEventListener("click", ()=>{
       const confBtn = document.createElement("button");
       confBtn.classList.add("confBtn");
-      
     });
     i++;
   });

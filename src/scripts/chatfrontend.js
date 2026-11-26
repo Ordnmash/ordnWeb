@@ -158,7 +158,7 @@ sendBtn.addEventListener("click", ()=>{
       constructChatSpace();
     }
     showUserPrompt();
-    //getResponse(prompt); will be called on showUserPrompt()
+    //getResponse(prompt); will be called on showUserPrompt() auto
     prompt_input.value = "";
   }
 });
